@@ -213,7 +213,7 @@ export default function Home() {
               <h2 className='order-1 mt-2 tracking-tight text-center text-balance !leading-tight font-bold text-5xl md:text-6xl text-gray-900'>
                 Upload your photo and get{' '}
                 <span className='relative px-2 bg-green-600 text-white'>
-                  your own case
+                  your own cas
                 </span>{' '}
                 now
               </h2>
