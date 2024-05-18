@@ -2,6 +2,7 @@
 
 import React, { useRef } from "react";
 import MaxWidthWrapper from "./MaxWidthWrapper";
+import { useInView } from 'framer-motion'
 import { cn } from "@/lib/utils";
 
 type Props = {};
