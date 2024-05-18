@@ -8,6 +8,7 @@ import Phone from "@/components/Phone";
 import { Icons } from "@/components/Icons";
 import Link from "next/link";
 import { buttonVariants } from "@/components/ui/button";
+import Reviews from "@/components/Reviews";
 
 export default function Home() {
   return (
@@ -203,7 +204,7 @@ export default function Home() {
         </MaxWidthWrapper>
 
         <div className='pt-16'>
-          {/* <Reviews /> */}
+          <Reviews />
         </div>
       </section>
 
