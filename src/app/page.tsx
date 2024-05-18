@@ -1,14 +1,12 @@
 import MaxWidthWrapper from "@/components/MaxWidthWrapper";
 import { ArrowRight, Check, Star } from 'lucide-react'
-import Image from "next/image";
 
-
-import snake1 from '../../public/snake-1.png'
 import Phone from "@/components/Phone";
 import { Icons } from "@/components/Icons";
 import Link from "next/link";
 import { buttonVariants } from "@/components/ui/button";
-import Reviews from "@/components/Reviews";
+import { Reviews } from "@/components/Reviews";
+
 
 export default function Home() {
   return (
@@ -194,7 +192,7 @@ export default function Home() {
                 <div className='flex flex-col'>
                   <p className='font-semibold'>Josh</p>
                   <div className='flex gap-1.5 items-center text-zinc-600'>
-                    <Check className='h-4 w-4 stroke-[3px] text-green-600'/>
+                    <Check className='h-4 w-4 stroke-[3px] text-green-600' />
                     <p className='text-sm'>Verified Purchase</p>
                   </div>
                 </div>
