@@ -193,7 +193,7 @@ export default function Home() {
                 <div className='flex flex-col'>
                   <p className='font-semibold'>Josh</p>
                   <div className='flex gap-1.5 items-center text-zinc-600'>
-                    <Check className='h-4 w-4 stroke-[3px] text-green-600' />
+                    <Check className='h-4 w-4 stroke-[3px] text-green-600'/>
                     <p className='text-sm'>Verified Purchase</p>
                   </div>
                 </div>
