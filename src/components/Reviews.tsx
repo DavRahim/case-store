@@ -16,6 +16,20 @@ const PHONES = [
     '/testimonials/6.jpg',
 ]
 
+function splitArray<T>(array: Array<T>, numParts: number) {
+    const result: Array<Array<T>> = []
+
+    for (let i = 0; i < array.length; i++) {
+        const index = i % numParts
+        if (!result[index]) {
+            result[index] = []
+        }
+        result[index].push(array[i])
+    }
+
+    return result
+}
+
 function ReviewGrid() {
     const containerRef = useRef<HTMLDivElement | null>(null)
     const isInView = useInView(containerRef, { once: true, amount: 0.4 })
@@ -70,6 +84,7 @@ const Reviews = (props: Props) => {
               src='/what-people-are-buying.png'
               className='absolute select-none hidden xl:block -left-32 top-1/3'
           />
+          <ReviewGrid />
       </MaxWidthWrapper>
   );
 };
