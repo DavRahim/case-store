@@ -144,7 +144,7 @@ export default function Home() {
                     the image is super clear
                   </span>
                   , on the case I had before, the image started fading into
-                  yellow-ish color after a couple weeks. Love it.
+                  yellow-ish color after a couple weeks. Love i.
                 </p>
               </div>
               <div className='flex gap-4 mt-2'>
