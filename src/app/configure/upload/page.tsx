@@ -14,13 +14,14 @@ const Page = (props: Props) => {
 
     const [isDragOver, setIsDragOver] = useState<boolean>(false)
     const [uploadProgress, setUploadProgress] = useState<number>(0)
-    const router = useRouter()
+    // const router = useRouter()
+    // console.log(router);
 
     const onDropRejected =() => {}
     const onDropAccepted = () => {}
 
     const isUploading = false
-const [isPending, startTransition] = useTransition()
+    const [isPending, startTransition] = useTransition()
     return (
 
         <div
