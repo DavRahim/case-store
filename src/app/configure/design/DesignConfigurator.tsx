@@ -4,6 +4,7 @@ import { AspectRatio } from "@/components/ui/aspect-ratio";
 import { useToast } from "@/components/ui/use-toast";
 import { useRouter } from "next/navigation";
 import NextImage from 'next/image'
+import { cn } from "@/lib/utils";
 
 interface DesignConfiguratorProps {
     configId: string
@@ -36,6 +37,13 @@ const DesignConfigurator = ({
                         />
                     </AspectRatio>
                     <div className='absolute z-40 inset-0 left-[3px] top-px right-[3px] bottom-px rounded-[32px] shadow-[0_0_0_99999px_rgba(229,231,235,0.6)]' />
+                    <div
+                        className={cn(
+                            'absolute inset-0 left-[3px] top-px right-[3px] bottom-px rounded-[32px]',
+                            `bg-zinc-950`
+                            // `bg-${options.color.tw}`
+                        )}
+                    />
                   
                 </div>
 
