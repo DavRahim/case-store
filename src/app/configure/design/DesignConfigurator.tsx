@@ -44,7 +44,14 @@ const DesignConfigurator = ({
                             // `bg-${options.color.tw}`
                         )}
                     />
-                  
+                </div>
+                <div className='relative w-full h-full'>
+                    <NextImage
+                        src={imageUrl}
+                        fill
+                        alt='your image'
+                        className='pointer-events-none'
+                    />
                 </div>
 
             </div>
