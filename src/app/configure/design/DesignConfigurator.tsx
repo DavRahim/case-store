@@ -1,3 +1,5 @@
+'use client'
+
 import { AspectRatio } from "@/components/ui/aspect-ratio";
 import { useToast } from "@/components/ui/use-toast";
 import { useRouter } from "next/navigation";
@@ -33,6 +35,7 @@ const DesignConfigurator = ({
                             className='pointer-events-none z-50 select-none'
                         />
                     </AspectRatio>
+                    <div className='absolute z-40 inset-0 left-[3px] top-px right-[3px] bottom-px rounded-[32px] shadow-[0_0_0_99999px_rgba(229,231,235,0.6)]' />
                   
                 </div>
 
