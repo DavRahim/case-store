@@ -17,6 +17,8 @@ import { Button } from "@/components/ui/button";
 import { ArrowRight, Check, ChevronsUpDown } from "lucide-react";
 import { BASE_PRICE } from "@/config/products";
 import { useUploadThing } from "@/lib/uploadthing";
+import { useMutation } from "@tanstack/react-query";
+import { saveConfig as _saveConfig, SaveConfigArgs } from './actions'
 
 interface DesignConfiguratorProps {
     configId: string
@@ -32,6 +34,23 @@ const DesignConfigurator = ({
 }: DesignConfiguratorProps) => {
     const { toast } = useToast()
     const router = useRouter()
+
+    const { mutate: saveConfig, isPending } = useMutation({
+        mutationKey: ['save-config'],
+        mutationFn: async (args: SaveConfigArgs) => {
+            await Promise.all([saveConfiguration(), _saveConfig(args)])
+        },
+        onError: () => {
+            toast({
+                title: 'Something went wrong',
+                description: 'There was an error on our end. Please try again.',
+                variant: 'destructive',
+            })
+        },
+        onSuccess: () => {
+            router.push(`/configure/preview?id=${configId}`)
+        },
+    })
 
     const [options, setOptions] = useState<{
         color: (typeof COLORS)[number]
@@ -112,7 +131,7 @@ const DesignConfigurator = ({
             })
         }
     }
-    
+
 
     function base64ToBlob(base64: string, mimeType: string) {
         const byteCharacters = atob(base64)
@@ -236,104 +255,104 @@ const DesignConfigurator = ({
                                 </RadioGroup>
                                 <div className='relative flex flex-col gap-3 w-full'>
                                     <Label>Model</Label>
-        <DropdownMenu>
-            <DropdownMenuTrigger asChild>
-                <Button
-                    variant='outline'
-                    role='combobox'
-                    className='w-full justify-between'>
-                    {options.model.label}
-                    <ChevronsUpDown className='ml-2 h-4 w-4 shrink-0 opacity-50' />
-                </Button>
-            </DropdownMenuTrigger>
-            <DropdownMenuContent>
-                {MODELS.options.map((model) => (
-                    <DropdownMenuItem
-                        key={model.label}
-                        className={cn(
-                            'flex text-sm gap-1 items-center p-1.5 cursor-default hover:bg-zinc-100',
-                            {
-                                'bg-zinc-100':
-                                    model.label === options.model.label,
-                            }
-                        )}
-                        onClick={() => {
-                            setOptions((prev) => ({ ...prev, model }))
-                        }}>
-                        <Check
-                            className={cn(
-                                'mr-2 h-4 w-4',
-                                model.label === options.model.label
-                                    ? 'opacity-100'
-                                    : 'opacity-0'
-                            )}
-                        />
-                        {model.label}
-                    </DropdownMenuItem>
-                ))}
-            </DropdownMenuContent>
-        </DropdownMenu>
+                                    <DropdownMenu>
+                                        <DropdownMenuTrigger asChild>
+                                            <Button
+                                                variant='outline'
+                                                role='combobox'
+                                                className='w-full justify-between'>
+                                                {options.model.label}
+                                                <ChevronsUpDown className='ml-2 h-4 w-4 shrink-0 opacity-50' />
+                                            </Button>
+                                        </DropdownMenuTrigger>
+                                        <DropdownMenuContent>
+                                            {MODELS.options.map((model) => (
+                                                <DropdownMenuItem
+                                                    key={model.label}
+                                                    className={cn(
+                                                        'flex text-sm gap-1 items-center p-1.5 cursor-default hover:bg-zinc-100',
+                                                        {
+                                                            'bg-zinc-100':
+                                                                model.label === options.model.label,
+                                                        }
+                                                    )}
+                                                    onClick={() => {
+                                                        setOptions((prev) => ({ ...prev, model }))
+                                                    }}>
+                                                    <Check
+                                                        className={cn(
+                                                            'mr-2 h-4 w-4',
+                                                            model.label === options.model.label
+                                                                ? 'opacity-100'
+                                                                : 'opacity-0'
+                                                        )}
+                                                    />
+                                                    {model.label}
+                                                </DropdownMenuItem>
+                                            ))}
+                                        </DropdownMenuContent>
+                                    </DropdownMenu>
                                 </div>
-{[MATERIALS, FINISHES].map(
-    ({ name, options: selectableOptions }) => (
-        <RadioGroup
-            key={name}
-            value={options[name]}
-            onChange={(val) => {
-                setOptions((prev) => ({
-                    ...prev,
-                    [name]: val,
-                }))
-            }}>
-            <Label>
-                {name.slice(0, 1).toUpperCase() + name.slice(1)}
-            </Label>
-            <div className='mt-3 space-y-4'>
-                {selectableOptions.map((option) => (
-                    <RadioGroup.Option
-                        key={option.value}
-                        value={option}
-                        className={({ active, checked }) =>
-                            cn(
-                                'relative block cursor-pointer rounded-lg bg-white px-6 py-4 shadow-sm border-2 border-zinc-200 focus:outline-none ring-0 focus:ring-0 outline-none sm:flex sm:justify-between',
-                                {
-                                    'border-primary': active || checked,
-                                }
-                            )
-                        }>
-                        <span className='flex items-center'>
-                            <span className='flex flex-col text-sm'>
-                                <RadioGroup.Label
-                                    className='font-medium text-gray-900'
-                                    as='span'>
-                                    {option.label}
-                                </RadioGroup.Label>
+                                {[MATERIALS, FINISHES].map(
+                                    ({ name, options: selectableOptions }) => (
+                                        <RadioGroup
+                                            key={name}
+                                            value={options[name]}
+                                            onChange={(val) => {
+                                                setOptions((prev) => ({
+                                                    ...prev,
+                                                    [name]: val,
+                                                }))
+                                            }}>
+                                            <Label>
+                                                {name.slice(0, 1).toUpperCase() + name.slice(1)}
+                                            </Label>
+                                            <div className='mt-3 space-y-4'>
+                                                {selectableOptions.map((option) => (
+                                                    <RadioGroup.Option
+                                                        key={option.value}
+                                                        value={option}
+                                                        className={({ active, checked }) =>
+                                                            cn(
+                                                                'relative block cursor-pointer rounded-lg bg-white px-6 py-4 shadow-sm border-2 border-zinc-200 focus:outline-none ring-0 focus:ring-0 outline-none sm:flex sm:justify-between',
+                                                                {
+                                                                    'border-primary': active || checked,
+                                                                }
+                                                            )
+                                                        }>
+                                                        <span className='flex items-center'>
+                                                            <span className='flex flex-col text-sm'>
+                                                                <RadioGroup.Label
+                                                                    className='font-medium text-gray-900'
+                                                                    as='span'>
+                                                                    {option.label}
+                                                                </RadioGroup.Label>
 
-                                {option.description ? (
-                                    <RadioGroup.Description
-                                        as='span'
-                                        className='text-gray-500'>
-                                        <span className='block sm:inline'>
-                                            {option.description}
-                                        </span>
-                                    </RadioGroup.Description>
-                                ) : null}
-                            </span>
-                        </span>
+                                                                {option.description ? (
+                                                                    <RadioGroup.Description
+                                                                        as='span'
+                                                                        className='text-gray-500'>
+                                                                        <span className='block sm:inline'>
+                                                                            {option.description}
+                                                                        </span>
+                                                                    </RadioGroup.Description>
+                                                                ) : null}
+                                                            </span>
+                                                        </span>
 
-                        <RadioGroup.Description
-                            as='span'
-                            className='mt-2 flex text-sm sm:ml-4 sm:mt-0 sm:flex-col sm:text-right'>
-                            <span className='font-medium text-gray-900'>
-                                {formatPrice(option.price / 100)}
-                            </span>
-                        </RadioGroup.Description>
-                    </RadioGroup.Option>
-                ))}
-            </div>
-        </RadioGroup>
-    )
-)}               
+                                                        <RadioGroup.Description
+                                                            as='span'
+                                                            className='mt-2 flex text-sm sm:ml-4 sm:mt-0 sm:flex-col sm:text-right'>
+                                                            <span className='font-medium text-gray-900'>
+                                                                {formatPrice(option.price / 100)}
+                                                            </span>
+                                                        </RadioGroup.Description>
+                                                    </RadioGroup.Option>
+                                                ))}
+                                            </div>
+                                        </RadioGroup>
+                                    )
+                                )}
                             </div>
 
 
@@ -354,9 +373,17 @@ const DesignConfigurator = ({
                             </p>
                             <Button
                                 // isLoading={isPending}
-                                // disabled={isPending}
+                                disabled={isPending}
                                 // loadingText="Saving"
-                                onClick={saveConfiguration}
+                                onClick={() =>
+                                    saveConfig({
+                                        configId,
+                                        color: options.color.value,
+                                        finish: options.finish.value,
+                                        material: options.material.value,
+                                        model: options.model.value,
+                                    })
+                                }
                                 size='sm'
                                 className='w-full'>
                                 Continue
