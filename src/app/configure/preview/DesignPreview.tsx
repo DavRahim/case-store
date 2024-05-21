@@ -32,7 +32,7 @@ const DesignPreview = ({ configuration }: { configuration: Configuration }) => {
     )!
 
     let totalPrice = BASE_PRICE
-    
+
     if (material === 'polycarbonate')
         totalPrice += PRODUCT_PRICES.material.polycarbonate
     if (finish === 'textured') totalPrice += PRODUCT_PRICES.finish.textured
@@ -94,6 +94,23 @@ const DesignPreview = ({ configuration }: { configuration: Configuration }) => {
                                         {formatPrice(BASE_PRICE / 100)}
                                     </p>
                                 </div>
+                                {finish === 'textured' ? (
+                                    <div className='flex items-center justify-between py-1 mt-2'>
+                                        <p className='text-gray-600'>Textured finish</p>
+                                        <p className='font-medium text-gray-900'>
+                                            {formatPrice(PRODUCT_PRICES.finish.textured / 100)}
+                                        </p>
+                                    </div>
+                                ) : null}
+                                {material === 'polycarbonate' ? (
+                                    <div className='flex items-center justify-between py-1 mt-2'>
+                                        <p className='text-gray-600'>Soft polycarbonate material</p>
+                                        <p className='font-medium text-gray-900'>
+                                            {formatPrice(PRODUCT_PRICES.material.polycarbonate / 100)}
+                                        </p>
+                                    </div>
+                                ) : null}
+                                <div className='my-2 h-px bg-gray-200' />
                             </div>  
                         </div>
                     </div>
