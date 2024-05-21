@@ -7,9 +7,10 @@ import Confetti from 'react-dom-confetti'
 import { useKindeBrowserClient } from '@kinde-oss/kinde-auth-nextjs'
 import { useRouter } from "next/navigation";
 import Phone from "@/components/Phone";
-import { cn } from "@/lib/utils";
+import { cn, formatPrice } from "@/lib/utils";
 import { COLORS, MODELS } from "@/validators/option-validator";
 import { Check } from "lucide-react";
+import { BASE_PRICE, PRODUCT_PRICES } from "@/config/products";
 
 
 
@@ -29,6 +30,12 @@ const DesignPreview = ({ configuration }: { configuration: Configuration }) => {
     const { label: modelLabel } = MODELS.options.find(
         ({ value }) => value === model
     )!
+
+    let totalPrice = BASE_PRICE
+    
+    if (material === 'polycarbonate')
+        totalPrice += PRODUCT_PRICES.material.polycarbonate
+    if (finish === 'textured') totalPrice += PRODUCT_PRICES.finish.textured
 
     return (
         <>
@@ -77,6 +84,22 @@ const DesignPreview = ({ configuration }: { configuration: Configuration }) => {
                             </ol>
                         </div>
                     </div>
+
+                    <div className='mt-8'>
+                        <div className='bg-gray-50 p-6 sm:rounded-lg sm:p-8'>
+                            <div className='flow-root text-sm'>
+                                <div className='flex items-center justify-between py-1 mt-2'>
+                                    <p className='text-gray-600'>Base price</p>
+                                    <p className='font-medium text-gray-900'>
+                                        {formatPrice(BASE_PRICE / 100)}
+                                    </p>
+                                </div>
+                            </div>  
+                        </div>
+                    </div>
+  
+
+
                 </div>
 
             </div>
