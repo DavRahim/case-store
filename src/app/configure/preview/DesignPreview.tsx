@@ -9,8 +9,9 @@ import { useRouter } from "next/navigation";
 import Phone from "@/components/Phone";
 import { cn, formatPrice } from "@/lib/utils";
 import { COLORS, MODELS } from "@/validators/option-validator";
-import { Check } from "lucide-react";
+import { ArrowRight, Check } from "lucide-react";
 import { BASE_PRICE, PRODUCT_PRICES } from "@/config/products";
+import { Button } from "@/components/ui/button";
 
 
 
@@ -64,7 +65,7 @@ const DesignPreview = ({ configuration }: { configuration: Configuration }) => {
                         In stock and ready to ship
                     </div>
                 </div>
-                
+
                 <div className='sm:col-span-12 md:col-span-9 text-base'>
                     <div className='grid grid-cols-1 gap-y-8 border-b border-gray-200 py-8 sm:grid-cols-2 sm:gap-x-6 sm:py-6 md:py-10'>
                         <div>
@@ -111,10 +112,26 @@ const DesignPreview = ({ configuration }: { configuration: Configuration }) => {
                                     </div>
                                 ) : null}
                                 <div className='my-2 h-px bg-gray-200' />
-                            </div>  
+
+                                <div className='flex items-center justify-between py-2'>
+
+                                    <p className='font-semibold text-gray-900'>Order total</p>
+                                    <p className='font-semibold text-gray-900'>
+                                        {formatPrice(totalPrice / 100)}
+                                    </p>
+                                </div>
+
+                            </div>
+                        </div>
+                        <div className='mt-8 flex justify-end pb-12'>
+                            <Button
+                                // onClick={() => handleCheckout()}
+                                className='px-4 sm:px-6 lg:px-8'>
+                                Check out <ArrowRight className='h-4 w-4 ml-1.5 inline' />
+                            </Button>
                         </div>
                     </div>
-  
+
 
 
                 </div>
