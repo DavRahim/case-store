@@ -16,7 +16,11 @@ const ThankYou = (props: Props) => {
     retryDelay: 500,
 
   })
-  return <div>ThankYou</div>;
+  return (
+  <div>
+    ThankYou
+    </div>
+  );
 };
 
 export default ThankYou;
