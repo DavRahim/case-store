@@ -1,4 +1,5 @@
 "use client"
+import { useQuery } from "@tanstack/react-query";
 import { useSearchParams } from "next/navigation";
 import React from "react";
 
@@ -7,6 +8,7 @@ type Props = {};
 const ThankYou = (props: Props) => {
   const searchParams = useSearchParams()
   const orderId = searchParams.get('orderId') || ''
+  const { data } = useQuery({})
   return <div>ThankYou</div>;
 };
 
