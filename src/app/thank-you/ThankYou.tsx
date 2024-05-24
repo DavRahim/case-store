@@ -6,6 +6,7 @@ type Props = {};
 
 const ThankYou = (props: Props) => {
   const searchParams = useSearchParams()
+  const orderId = searchParams.get('orderId') || ''
   return <div>ThankYou</div>;
 };
 
