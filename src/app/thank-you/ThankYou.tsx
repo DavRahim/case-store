@@ -8,7 +8,13 @@ type Props = {};
 const ThankYou = (props: Props) => {
   const searchParams = useSearchParams()
   const orderId = searchParams.get('orderId') || ''
-  const { data } = useQuery({})
+  const { data } = useQuery({
+    queryKey: ['get-payment-status'],
+    queryFn: async () => await getPaymentStatus({ orderId }),
+    retry: true,
+    retryDelay: 500,
+
+  })
   return <div>ThankYou</div>;
 };
 
