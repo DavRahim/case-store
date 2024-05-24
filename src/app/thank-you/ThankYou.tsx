@@ -10,15 +10,17 @@ const ThankYou = (props: Props) => {
   const orderId = searchParams.get('orderId') || ''
   const { data } = useQuery({
     queryKey: ['get-payment-status'],
-    queryFn: async () =>{},
+    queryFn: async () => { },
     //  await getPaymentStatus({ orderId }),
     retry: true,
     retryDelay: 500,
 
   })
   return (
-  <div className="bg-white">
-    ThankYou
+    <div className="bg-white">
+      <div className='mx-auto max-w-3xl px-4 py-16 sm:px-6 sm:py-24 lg:px-8'>
+
+      </div>
     </div>
   );
 };
