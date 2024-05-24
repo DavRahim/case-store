@@ -17,7 +17,7 @@ const ThankYou = (props: Props) => {
 
   })
   return (
-  <div>
+  <div className="bg-white">
     ThankYou
     </div>
   );
