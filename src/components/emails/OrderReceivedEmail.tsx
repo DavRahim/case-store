@@ -16,7 +16,6 @@ import {
 } from '@react-email/components'
 import React from "react";
 
-type Props = {};
 
 const OrderReceivedEmail = ({
     shippingAddress,
