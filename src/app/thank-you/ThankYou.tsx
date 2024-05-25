@@ -95,11 +95,11 @@ const ThankYou = (props: Props) => {
               <p className='font-medium text-gray-900'>Shipping address</p>
               <div className='mt-2 text-zinc-700'>
                 <address className='not-italic'>
-                  {/* <span className='block'>{shippingAddress?.name}</span>
+                  <span className='block'>{shippingAddress?.name}</span>
                   <span className='block'>{shippingAddress?.street}</span>
                   <span className='block'>
                     {shippingAddress?.postalCode} {shippingAddress?.city}
-                  </span> */}
+                  </span>
                 </address>
               </div>
             </div>
