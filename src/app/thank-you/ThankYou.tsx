@@ -147,7 +147,7 @@ const ThankYou = (props: Props) => {
 
           <div className='flex justify-between'>
             <p className='font-medium text-zinc-900'>Total</p>
-            {/* <p className='text-zinc-700'>{formatPrice(amount)}</p> */}
+            <p className='text-zinc-700'>{formatPrice(amount)}</p>
           </div>
 
         </div>
