@@ -4,6 +4,7 @@ import { useSearchParams } from "next/navigation";
 import React from "react";
 import { getPaymentStatus } from "./action";
 import { formatPrice } from "@/lib/utils";
+import { Loader2 } from "lucide-react";
 
 type Props = {};
 
@@ -20,9 +21,11 @@ const ThankYou = (props: Props) => {
 
   if(data === undefined){
     return(
-      <div className="w-full mt024 flex items-center">
-        <div className="flex flex-col items-center gap-2">
-
+      <div className='w-full mt-24 flex justify-center'>
+        <div className='flex flex-col items-center gap-2'>
+          <Loader2 className='h-8 w-8 animate-spin text-zinc-500' />
+          <h3 className='font-semibold text-xl'>Loading your order...</h3>
+          <p>This won't take long.</p>
         </div>
       </div>
     )
