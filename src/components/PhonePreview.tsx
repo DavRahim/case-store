@@ -31,6 +31,7 @@ const PhonePreview = ({
         window.addEventListener('resize', handleResize)
 
         return () => window.removeEventListener('resize', handleResize)
+
     }, [ref.current])
 
     let caseBackgroundColor = 'bg-zinc-950'
