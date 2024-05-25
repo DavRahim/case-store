@@ -16,9 +16,10 @@ const ThankYou = (props: Props) => {
     queryFn: async () => await getPaymentStatus({ orderId }),
     retry: true,
     retryDelay: 500,
-
+    
   })
-
+  
+  console.log(data);
   if(data === undefined){
     return(
       <div className='w-full mt-24 flex justify-center'>
