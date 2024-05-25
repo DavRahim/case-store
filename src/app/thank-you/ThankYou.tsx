@@ -17,6 +17,17 @@ const ThankYou = (props: Props) => {
     retryDelay: 500,
 
   })
+
+  if(data === undefined){
+    return(
+      <div className="w-full mt024 flex items-center">
+        <div className="flex flex-col items-center gap-2">
+
+        </div>
+      </div>
+    )
+  }
+
   return (
     <div className="bg-white">
       <div className='mx-auto max-w-3xl px-4 py-16 sm:px-6 sm:py-24 lg:px-8'>
