@@ -31,6 +31,18 @@ const ThankYou = (props: Props) => {
     )
   }
 
+  if (data === false) {
+    return (
+      <div className='w-full mt-24 flex justify-center'>
+        <div className='flex flex-col items-center gap-2'>
+          <Loader2 className='h-8 w-8 animate-spin text-zinc-500' />
+          <h3 className='font-semibold text-xl'>Verifying your payment...</h3>
+          <p>This might take a moment.</p>
+        </div>
+      </div>
+    )
+  }
+
   return (
     <div className="bg-white">
       <div className='mx-auto max-w-3xl px-4 py-16 sm:px-6 sm:py-24 lg:px-8'>
