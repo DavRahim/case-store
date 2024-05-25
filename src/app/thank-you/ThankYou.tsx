@@ -20,7 +20,6 @@ const ThankYou = (props: Props) => {
     
   })
   
-  console.log(data);
   if(data === undefined){
     return(
       <div className='w-full mt-24 flex justify-center'>
